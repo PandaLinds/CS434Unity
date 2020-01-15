@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public void CompleteLevel()
     {
         completeLevelUI.SetActive(true);
+        Score.scoreNumber = 0;
     }
 
     public void EndGame()
@@ -27,5 +28,6 @@ public class GameManager : MonoBehaviour
     void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        Score.scoreNumber = 0;
     }
 }
