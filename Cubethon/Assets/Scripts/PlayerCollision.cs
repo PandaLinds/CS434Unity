@@ -2,16 +2,12 @@
 
 public class PlayerCollision : MonoBehaviour
 {
-
-    public PlayerMovement movement;
-
-
     void OnCollisionEnter(Collision collisionInfo)
     {
-        if(collisionInfo.collider.tag == "Obstacle")
+        if(collisionInfo.collider.tag == "Player")
         {
-            movement.enabled = false;
-            FindObjectOfType<GameManager>().EndGame();
+            Score.scoreNumber++;
+            Destroy(gameObject,0.75f);
         }
     }
 }
