@@ -4,31 +4,28 @@ namespace Pattern.Command_
 {
     public class Client : MonoBehaviour
     {
-        private Player mPlayer;
+        private PlayerGameControls mPlayer;
+        Invoker invoker = new Invoker();
+        
 
         void Start()
         {
-            mPlayer = new Player1();
+            mPlayer = new PlayerGameMovement();
+            Debug.Log("PlayerMovement created");
         }
 
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKey(KeyCode.A))
             {
                 Command moveLeft = new Left(mPlayer);
-
-                Invoker invoker = new Invoker();
-
                 invoker.SetCommand(moveLeft);
                 invoker.ExecuteCommand();
             }
 
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKey(KeyCode.D))
             {
                 Command moveRight = new Right(mPlayer);
-
-                Invoker invoker = new Invoker();
-
                 invoker.SetCommand(moveRight);
                 invoker.ExecuteCommand();
             }

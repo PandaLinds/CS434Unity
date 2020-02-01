@@ -1,6 +1,6 @@
 ﻿class Left : Command
 {
-    public Left(Player CurrentPlayer) : base(CurrentPlayer)
+    public Left(PlayerGameControls CurrentPlayer) : base(CurrentPlayer)
     {
     }
 

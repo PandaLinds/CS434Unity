@@ -1,6 +1,6 @@
 ﻿class Right : Command
 {
-    public Right(Player CurrentPlayer) : base(CurrentPlayer)
+    public Right(PlayerGameControls player) : base(player)
     {
     }
 

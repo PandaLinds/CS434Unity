@@ -1,8 +1,8 @@
 ﻿abstract class Command
 {
-    protected Player m_Player;
+    protected PlayerGameControls m_Player;
 
-    public Command(Player PlayerNew)
+    public Command(PlayerGameControls PlayerNew)
     {
         m_Player = PlayerNew;
     }

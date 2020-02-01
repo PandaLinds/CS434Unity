@@ -96,5 +96,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41193f64dc8659b4f818d4fc7ffa4e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  offset: {x: 0, y: 1, z: -5}
+  player: {fileID: 597813022099849548, guid: 0189a3db0f26855838b4bb5d08c0a8b7, type: 3}
