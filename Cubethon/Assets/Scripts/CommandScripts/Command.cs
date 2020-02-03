@@ -1,11 +1,38 @@
-﻿abstract class Command
-{
-    protected PlayerGameControls m_Player;
+﻿using UnityEngine;
 
-    public Command(PlayerGameControls PlayerNew)
+abstract class Command
+{
+    public Rigidbody _player;
+    public float _force;
+    public float timestamp; // for logging purposes
+    public abstract void Execute();
+}
+
+class Left : Command
+{
+    public Left(Rigidbody player, float force)
     {
-        m_Player = PlayerNew;
+        _player = player;
+        _force = force;
     }
 
-    public abstract void Execute();
+    public override void Execute()
+    {
+        timestamp = Time.timeSinceLevelLoad;
+        _player.AddForce(-_force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+    }
+}
+
+class Right : Command
+{
+    public Right(Rigidbody player, float force)
+    {
+        _player = player;
+        _force = force;
+    }
+
+    public override void Execute()
+    {
+        _player.AddForce(_force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+    }
 }

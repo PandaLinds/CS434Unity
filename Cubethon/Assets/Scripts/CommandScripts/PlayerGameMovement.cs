@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 
+//move to game manager
+
 class PlayerGameMovement : PlayerGameControls
 {
     GameObject player;
@@ -12,16 +14,17 @@ class PlayerGameMovement : PlayerGameControls
         PlayerRB = player.GetComponent<Rigidbody>() as Rigidbody;
         Debug.Log("PlayerRB Created");
     }
-    //add force
+
+    //add force right
     public override void Right()
     {
         PlayerRB.AddForce(sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         Debug.Log("Right");
     }
 
+    //add force right
     public override void Left()
     {
-        
         PlayerRB.AddForce(-sidewaysForce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
         Debug.Log("Left");
     }
