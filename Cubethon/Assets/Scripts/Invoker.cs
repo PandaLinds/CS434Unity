@@ -14,7 +14,10 @@ class Invoker
     //execute command and put command in queue
     public void ExecuteCommand()
     {
-        CommandLog.commands.Enqueue(m_Command);
+        if (!disableLog)
+        {
+            CommandLog.commands.Enqueue(m_Command);  // log the command for playback later
+        }
         Debug.Log(m_Command);
         m_Command.Execute();
     }
