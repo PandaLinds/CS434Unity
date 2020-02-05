@@ -5,9 +5,21 @@ public class GameManager : MonoBehaviour
 {
 
     bool gameHasEnded = false;
-
-    public float restartDelay = 1f;
+    public GameObject player;
+    public float restartDelay = 4f;
     public GameObject completeLevelUI;
+
+    void Start()
+    {
+        Client playerMovement = FindObjectOfType<Client>();
+        player = playerMovement.gameObject;
+
+        // if (CommandLog.commands.Count > 0)
+        // {
+        //     instantReplay = true;
+        //     replayStartTime = Time.timeSinceLevelLoad;
+        // }
+    }
 
     public void CompleteLevel()
     {
