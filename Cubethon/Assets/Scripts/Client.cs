@@ -7,8 +7,8 @@ public class Client : MonoBehaviour
     public Rigidbody rb;
 
     //make force
-    private float forwardForce = 65f;
-    private float sidewaysForce = 165f;
+    public float forwardForce = 65f;
+    public float sidewaysForce = 165f;
 
     //make variable for game manager
     GameManager gameManager;

@@ -8,6 +8,8 @@ public class EndTrigger : MonoBehaviour
 
     void OnTriggerEnter()
     {
+        FindObjectOfType<Client>().forwardForce = 0f;
+        FindObjectOfType<Client>().sidewaysForce = 0f;
         gameManager.CompleteLevel();
     }
 }

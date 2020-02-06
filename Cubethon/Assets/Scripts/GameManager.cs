@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public float restartDelay = 4f;
     public GameObject completeLevelUI;
-    bool instantReplay = false;
+    public bool instantReplay = false;
+    float replayStartTime;
 
     void Start()
     {
@@ -20,13 +21,13 @@ public class GameManager : MonoBehaviour
         {
             //set instant replay on and give start time
             instantReplay = true;
-            //replayStartTime = Time.timeSinceLevelLoad;
+            replayStartTime = Time.timeSinceLevelLoad;
         }
     }
 
     private void Update()
     {
-        if(instantReplay)
+        if (instantReplay)
         {
             InstantReplay();
         }
@@ -47,15 +48,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void Restart()
+    public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Score.scoreNumber = 0;
     }
 
+    //doesn't work too well
     void InstantReplay()
     {
-        
+
         if (CommandLog.commands.Count == 0)
         {
             CommandLog.commands.Clear();
@@ -63,14 +65,17 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        Command command;// = CommandLog.commands.Peek();
-        command = CommandLog.commands.Dequeue();
-        Debug.Log(CommandLog.commands.Count);
-        command._player = player.GetComponent<Rigidbody>();
-        Invoker invoker = new Invoker();
-        invoker.disableLog = true;
-        invoker.SetCommand(command);
-        invoker.ExecuteCommand();
+        Command command = CommandLog.commands.Peek();
+        if (Time.timeSinceLevelLoad >= command.timestamp + replayStartTime)
+        {
+            command = CommandLog.commands.Dequeue();
+            Debug.Log(CommandLog.commands.Count);
+            command._player = player.GetComponent<Rigidbody>();
+            Invoker invoker = new Invoker();
+            invoker.disableLog = true;
+            invoker.SetCommand(command);
+            invoker.ExecuteCommand();
+        }
 
     }
 }

@@ -4,6 +4,7 @@ public abstract class Command
 {
     public Rigidbody _player;
     public float _force;
+    public float timestamp;
     public abstract void Execute();
 }
 
@@ -20,6 +21,7 @@ class Left : Command
     //add force to player
     public override void Execute()
     {
+        timestamp = Time.timeSinceLevelLoad;
         _player.AddForce(-_force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
     }
 }
@@ -36,6 +38,7 @@ class Right : Command
     //add force to player
     public override void Execute()
     {
+        timestamp = Time.timeSinceLevelLoad;
         _player.AddForce(_force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
     }
 }
