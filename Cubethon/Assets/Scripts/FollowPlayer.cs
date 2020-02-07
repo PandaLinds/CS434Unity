@@ -9,12 +9,14 @@ public class FollowPlayer : MonoBehaviour
 
     void Start () 
     {
+        //find player
         player = GameObject.Find("player");
     }
 
     // Update is called once per frame
     void Update()
     {
+        //follow player slightly behind with no rotation
         transform.position = player.transform.position + offset;
         transform.rotation=Quaternion.Euler(camRotation);
     }

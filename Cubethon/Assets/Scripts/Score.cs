@@ -3,14 +3,11 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour
 {
-
-    public Transform player;
     public Text scoreText;
     public static int scoreNumber;
-
-    // Update is called once per frame
     void Update()
     {
+        //have score text update to score number
         scoreText.text = scoreNumber.ToString();
     }
 

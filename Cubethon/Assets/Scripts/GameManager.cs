@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
 
+    //get or set veriables needed for method
     bool gameHasEnded = false;
     public GameObject player;
     public float restartDelay = 4f;
@@ -13,10 +14,14 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        //set player variable
         Client playerMovement = FindObjectOfType<Client>();
         player = playerMovement.gameObject;
 
+        //reset score 
         Score.scoreNumber = 0;
+
+        //only have instant replay if there are commands in queue
         if (CommandLog.commands.Count > 0)
         {
             //set instant replay on and give start time
@@ -27,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        //run instant replay if flag is set
         if (instantReplay)
         {
             InstantReplay();
@@ -34,12 +40,14 @@ public class GameManager : MonoBehaviour
     }
 
     public void CompleteLevel()
-    {  // need a button for replay option
+    {  
+        //pull level complete panel when trigger hit
         completeLevelUI.SetActive(true);
     }
 
     public void EndGame()
     {
+        //check if player has lost
         if (gameHasEnded == false)
         {
             gameHasEnded = true;
@@ -50,6 +58,7 @@ public class GameManager : MonoBehaviour
 
     public void Restart()
     {
+        //reload current screen and reset score
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         Score.scoreNumber = 0;
     }
@@ -57,7 +66,7 @@ public class GameManager : MonoBehaviour
     //doesn't work too well
     void InstantReplay()
     {
-
+        // Stop running replay if queue is empty
         if (CommandLog.commands.Count == 0)
         {
             CommandLog.commands.Clear();
@@ -65,12 +74,13 @@ public class GameManager : MonoBehaviour
             return;
         }
 
+        //load command and execute only if timing is similar
         Command command = CommandLog.commands.Peek();
         if (Time.timeSinceLevelLoad >= command.timestamp + replayStartTime)
         {
             command = CommandLog.commands.Dequeue();
             Debug.Log(CommandLog.commands.Count);
-            command._player = player.GetComponent<Rigidbody>();
+            command.mplayer = player.GetComponent<Rigidbody>();
             Invoker invoker = new Invoker();
             invoker.disableLog = true;
             invoker.SetCommand(command);

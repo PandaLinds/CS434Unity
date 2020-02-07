@@ -2,8 +2,8 @@
 
 public abstract class Command
 {
-    public Rigidbody _player;
-    public float _force;
+    public Rigidbody mplayer;
+    public float mforce;
     public float timestamp;
     public abstract void Execute();
 }
@@ -14,15 +14,15 @@ class Left : Command
     //get rigidobdy from player and force
     public Left(Rigidbody player, float force)
     {
-        _player = player;
-        _force = force;
+        mplayer = player;
+        mforce = force;
     }
 
     //add force to player
     public override void Execute()
     {
         timestamp = Time.timeSinceLevelLoad;
-        _player.AddForce(-_force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+        mplayer.AddForce(-mforce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
     }
 }
 
@@ -31,14 +31,14 @@ class Right : Command
     //get rigidobdy from player and force
     public Right(Rigidbody player, float force)
     {
-        _player = player;
-        _force = force;
+        mplayer = player;
+        mforce = force;
     }
 
     //add force to player
     public override void Execute()
     {
         timestamp = Time.timeSinceLevelLoad;
-        _player.AddForce(_force * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
+        mplayer.AddForce(mforce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
     }
 }
