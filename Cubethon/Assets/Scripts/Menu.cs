@@ -8,3 +8,4 @@ public class Menu : MonoBehaviour
         //load level1
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+}
