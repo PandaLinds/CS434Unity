@@ -14,8 +14,9 @@ public class EventSystem : MonoBehaviour
     {
         PlayerCollision.OnPlayerCollision -= AddToScore;
     }
-    private void AddToScore(PlayerCollision tempVar)
+    private void AddToScore(GameObject Obstical)
     {
         Score.scoreNumber++;
+        Destroy(Obstical, 0.75f);
     }
 }

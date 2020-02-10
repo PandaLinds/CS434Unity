@@ -3,7 +3,7 @@ using System;
 
 public class PlayerCollision : MonoBehaviour
 {
-    public static event Action<PlayerCollision> OnPlayerCollision;
+    public static event Action<GameObject> OnPlayerCollision;
     void OnCollisionEnter(Collision collisionInfo)
     {
         //if blocks run into player, add a point then destroy
@@ -11,7 +11,7 @@ public class PlayerCollision : MonoBehaviour
         {
             if (OnPlayerCollision != null)
             {
-                OnPlayerCollision(this);
+                OnPlayerCollision(this.gameObject);
             }
         }
     }
