@@ -7,7 +7,6 @@ public class Score : MonoBehaviour
     public static int scoreNumber;
     void Update()
     {
-        Debug.Log(scoreNumber);
         //have score text update to score number
         scoreText.text = scoreNumber.ToString();
     }

@@ -4,17 +4,19 @@ using System;
 public class PlayerCollision : MonoBehaviour
 {
     public static event Action<GameObject> OnPlayerCollision;
+    public static event Action<GameObject> OnPlayerCollisionPlayer;
     void OnCollisionEnter(Collision collisionInfo)
     {
-        //if blocks run into player, add a point then destroy
-        if((collisionInfo.collider.tag == "Player")||(collisionInfo.collider.tag == "Obstacal"))
+        if (OnPlayerCollision != null)
         {
-            if (OnPlayerCollision != null)
-            {
-                OnPlayerCollision(this.gameObject);
-            }
+            OnPlayerCollision(collisionInfo.gameObject);
+        }
+
+        if (OnPlayerCollisionPlayer != null)
+        {
+            OnPlayerCollisionPlayer(gameObject);
         }
     }
 
-    
+
 }

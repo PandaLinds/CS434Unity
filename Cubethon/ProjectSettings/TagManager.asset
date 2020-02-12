@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Obstacle
+  - Extra Points
+  - Normal
   layers:
   - Default
   - TransparentFX
