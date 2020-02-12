@@ -8,18 +8,21 @@ public class EventSystem : MonoBehaviour
     
     private void Start()
     {
+        //In player collision, there will be 2 broadcasters registered here
         PlayerCollision.OnPlayerCollision += Pts;
         PlayerCollision.OnPlayerCollisionPlayer += ColorChange;
     }
 
     private void OnDestroy()
     {
+        //broadcasters unregistered
         PlayerCollision.OnPlayerCollision -= Pts;
         PlayerCollision.OnPlayerCollisionPlayer -= ColorChange;
     }
 
     private void Pts(GameObject Obstical)
     {
+        //depending on the tag of the game object, different points will be rewarded then delete the object
         if (Obstical.tag == "Normal")
         {
             Score.scoreNumber++;
@@ -41,15 +44,13 @@ public class EventSystem : MonoBehaviour
     public Material NewPlayerMat;
     private void ColorChange(GameObject Player)
     {
-        Debug.Log("Color Change");
+        //change the color between 2 materials when this is called
         if (Player.GetComponent<MeshRenderer>().material.color == OrigPlayerMat.color)
         {
-            Debug.Log("mat is playermat");
             Player.GetComponent<MeshRenderer>().material = NewPlayerMat;
         }        
         else if(Player.GetComponent<MeshRenderer>().material.color == NewPlayerMat.color)
         {
-            Debug.Log("mat is other");
             Player.GetComponent<MeshRenderer>().material = OrigPlayerMat;
         }
     }

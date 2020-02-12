@@ -18,7 +18,6 @@ class Invoker
         {
             CommandLog.commands.Enqueue(m_Command);  // log the command for playback later
         }
-        Debug.Log(m_Command);
         m_Command.Execute();
     }
 }
