@@ -41,4 +41,4 @@ class Right : Command
         timestamp = Time.timeSinceLevelLoad;
         mplayer.AddForce(mforce * Time.deltaTime, 0, 0, ForceMode.VelocityChange);
     }
-}
+} 
